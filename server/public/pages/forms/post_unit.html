@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Unidad</title>
+</head>
+
+<style>
+    body {
+        width: 100vw;
+        font-size: 14px;
+    }
+
+    fieldset {
+        display: flex;
+        flex-direction: column;
+        padding-left: 1rem;
+        padding-bottom: 1rem;
+        gap: 0.5rem;
+    }
+
+    textarea,
+    input[type=text],
+    select {
+        height: 1.6rem;
+        padding-left: 4px;
+        outline: none;
+    }
+
+    textarea {
+        width: calc(100% - 1rem);
+        height: 3rem;
+        resize: none;
+        padding-top: 4px;
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    #options-container {
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem;
+    }
+
+    .extra_options {
+        display: flex;
+    }
+
+    button[type=submit] {
+        width: 100%;
+        height: 3rem;
+        margin: 1rem 0 1rem 0;
+        font-size: 2rem;
+    }
+
+    #options-container>.option,
+    .extra_ {
+        user-select: none;
+        gap: 0.25rem;
+        padding: 0.1rem 0.5rem;
+        border-radius: 4px;
+        border: 1px solid black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .long-text-inputs {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .long-text-inputs>input {
+        width: 10rem;
+    }
+
+    @media (min-width: 768px) {
+        body {
+            width: 75vw;
+            margin: 0 auto;
+        }
+    }
+</style>
+
+<body>
+    <h1>Formulario de Unidad</h1>
+    <form id="postUnit">
+        <fieldset>
+            <legend>
+                <H2>Basic Info</H2>
+            </legend>
+            <article>
+                <label for="id">ID:</label>
+                <input type="text" id="id" name="id">
+
+                <label for="unit_name">Nombre de la unidad:</label>
+                <input type="text" id="unit_name" name="unit_name">
+
+                <label for="unit_color">Color:</label>
+                <select name="unit_color" id="unit_color"></select>
+
+                <label for="unit_type">Tipo:</label>
+                <select name="unit_type" id="unit_type"></select>
+            </article>
+
+            <article>
+                <label for="unit_tag">Tag:</label>
+                <div id="options-container"></div>
+                <p>Seleccionadas: <span id="selected-options"></span></p>
+            </article>
+
+            <article> <label for="unit_chapter">Capítulo:</label>
+                <select name="unit_chapter" id="unit_chapter"></select>
+
+                <label for="unit_rarity">Rareza:</label>
+                <select name="unit_rarity" id="unit_rarity"></select>
+            </article>
+
+
+            <article class="extra_options">
+                <div class="extra_">
+                    <label for="is_lf">Es LF:</label>
+                    <input type="checkbox" id="is_lf" name="is_lf">
+                </div>
+                <div class="extra_">
+                    <label for="is_revival">Es Revival:</label>
+                    <input type="checkbox" id="is_revival" name="is_revival">
+                </div>
+                <div class="extra_">
+                    <label for="is_transforming">Se transforma:</label>
+                    <input type="checkbox" id="is_transforming" name="is_transforming">
+                </div>
+                <div class="extra_">
+                    <label for="is_tag_switch">Es Dual:</label>
+                    <input type="checkbox" id="is_tag_switch" name="is_tag_switch">
+                </div>
+                <div class="extra_">
+                    <label for="has_gauge">Tiene Gauge:</label>
+                    <input type="checkbox" id="has_gauge" name="has_gauge">
+                </div>
+                <div class="extra_">
+                    <label for="has_zenkai">Tiene Zenkai:</label>
+                    <input type="checkbox" id="has_zenkai" name="has_zenkai">
+                </div>
+                <div class="extra_">
+                    <label for="has_awaken">Tiene Awaken:</label>
+                    <input type="checkbox" id="has_awaken" name="has_awaken">
+                </div>
+            </article>
+        </fieldset>
+
+        <fieldset>
+            <legend>
+                <h1>Images</h1>
+            </legend>
+            <input type="file" multiple>
+        </fieldset>
+
+        <fieldset>
+            <legend>
+                <h2>Datos de destrezas</h2>
+            </legend>
+            <label for="strike_art">Strike Art:</label>
+            <textarea id="strike_art" name="strike_art"></textarea>
+
+            <label for="blast_art">Blast Art:</label>
+            <textarea id="blast_art" name="blast_art"></textarea>
+
+            <div class="long-text-inputs">
+                <label for="name_special_move_art">Nombre</label>
+                <input type="text" id="name_special_move_art" name="name_special_move_art">
+                <label for="special_move_art">Special Move:</label>
+                <textarea id="special_move_art" name="special_move_art"></textarea>
+            </div>
+            <div class="long-text-inputs">
+                <label for="name_special_art">Nombre</label>
+                <input type="text" id="name_special_art" name="name_special_art">
+                <label for="special_art">Special Art:</label>
+                <textarea id="special_art" name="special_art"></textarea>
+            </div>
+            <div class="long-text-inputs">
+                <label for="name_ultimate_art">Nombre</label>
+                <input type="text" id="name_ultimate_art" name="name_ultimate_art">
+                <label for="ultimate_art">Ultimate Art:</label>
+                <textarea id="ultimate_art" name="ultimate_art"></textarea>
+            </div>
+            <div class="long-text-inputs">
+                <label for="name_awaken_art">Nombre</label>
+                <input type="text" id="name_awaken_art" name="name_awaken_art">
+                <label for="awaken_art">Awaken Art:</label>
+                <textarea id="awaken_art" name="awaken_art"></textarea>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>
+                <h2>Habilidades</h2>
+            </legend>
+            <label for="z_limited_1">Z Limited I:</label>
+            <textarea id="z_limited_1" name="z_limited_1" disabled></textarea>
+            <label for="z_limited_2">Z Limited II:</label>
+            <textarea id="z_limited_2" name="z_limited_2" disabled></textarea>
+            <label for="z_limited_3">Z Limited III:</label>
+            <textarea id="z_limited_3" name="z_limited_3" disabled></textarea>
+            <label for="z_limited_4">Z Limited IV:</label>
+            <textarea id="z_limited_4" name="z_limited_4" disabled></textarea>
+
+            <label for="z_ability_1">Z Ability I:</label>
+            <textarea id="z_ability_1" name="z_ability_1"></textarea>
+            <label for="z_ability_2">Z Ability II:</label>
+            <textarea id="z_ability_2" name="z_ability_2"></textarea>
+            <label for="z_ability_3">Z Ability III:</label>
+            <textarea id="z_ability_3" name="z_ability_3"></textarea>
+            <label for="z_ability_4">Z Ability IV:</label>
+            <textarea id="z_ability_4" name="z_ability_4"></textarea>
+
+            <label for="ultra_ability">Ultra Ability:</label>
+            <textarea id="ultra_ability" name="ultra_ability" disabled></textarea>
+
+            <div class="long-text-inputs">
+                <label for="name_main">Nombre</label>
+                <input type="text" id="name_main" name="name_main">
+                <label for="main_ability">Main</label>
+                <textarea id="main_ability" name="main_ability"></textarea>
+            </div>
+            <div class="long-text-inputs">
+                <label for="name_passive_1">Nombre</label>
+                <input type="text" id="name_passive_1" name="name_passive_1">
+                <label for="passive_1">Passiva 1</label>
+                <textarea id="passive_1" name="passive_1"></textarea>
+            </div>
+            <div class="long-text-inputs">
+                <label for="name_passive_2">Nombre</label>
+                <input type="text" id="name_passive_2" name="name_passive_2">
+                <label for="passive_2">Passiva 2</label>
+                <textarea id="passive_2" name="passive_2"></textarea>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>
+                <h1>Zenkai Data</h1>
+            </legend>
+            <div class="long-text-inputs">
+                <label for="name_main">Nombre</label>
+                <input type="text" id="name_main" name="name_main">
+                <label for="main_ability">Main</label>
+                <textarea id="main_ability" name="main_ability"></textarea>
+            </div>
+            <div class="long-text-inputs">
+                <label for="name_zpassive_1">Nombre</label>
+                <input type="text" id="name_zpassive_1" name="name_zpassive_1">
+                <label for="zpassive_1">Passiva 1</label>
+                <textarea id="zpassive_1" name="zpassive_1"></textarea>
+            </div>
+            <div class="long-text-inputs">
+                <label for="name_zpassive_2">Nombre</label>
+                <input type="text" id="name_zpassive_2" name="name_zpassive_2">
+                <label for="zpassive_2">Passiva 2</label>
+                <textarea id="zpassive_2" name="zpassive_2"></textarea>
+            </div>
+            <div class="long-text-inputs">
+                <label for="name_passive_3">Nombre</label>
+                <input type="text" id="name_passive_3" name="name_passive_3">
+                <label for="passive_3">Passiva 3</label>
+                <textarea id="passive_3" name="passive_3"></textarea>
+            </div>
+            <div class="long-text-inputs">
+                <label for="name_passive_4">Nombre</label>
+                <input type="text" id="name_passive_4" name="name_passive_4">
+                <label for="passive_4">Passiva 4</label>
+                <textarea id="passive_4" name="passive_4"></textarea>
+            </div>
+
+            <label for="zenkai_ability_1">Zenkai Ability I:</label>
+            <textarea id="zenkai_ability_1" name="zenkai_ability_1"></textarea>
+            <label for="zenkai_ability_2">Zenkai Ability II:</label>
+            <textarea id="zenkai_ability_2" name="zenkai_ability_2"></textarea>
+            <label for="zenkai_ability_3">Zenkai Ability III:</label>
+            <textarea id="zenkai_ability_3" name="zenkai_ability_3"></textarea>
+            <label for="zenkai_ability_4">Zenkai Ability IV:</label>
+            <textarea id="zenkai_ability_4" name="zenkai_ability_4"></textarea>
+        </fieldset>
+        <button type="submit">Crear Unidad</button>
+    </form>
+</body>
+
+<script>
+    const selectColor = document.getElementById('unit_color');
+    const selectChapter = document.getElementById('unit_chapter');
+    const selectRarity = document.getElementById('unit_rarity');
+    const selectType = document.getElementById('unit_type');
+
+    var unitID = document.getElementById('id');
+    var unitName = document.getElementById('unit_name');
+    var unitColor = document.getElementById('unit_color');
+    var unitType = document.getElementById('unit_type');
+    var unitTag = selectedIdsString
+    var unitChapter = document.getElementById('unit_chapter');
+    var unitRarity = document.getElementById('unit_rarity');
+    var isLF = document.getElementById('is_lf');
+    var isRevival = document.getElementById('is_revival');
+    var isTransforming = document.getElementById('is_transforming');
+    var isTagSwitch = document.getElementById('is_tag_switch');
+    var hasGauge = document.getElementById('has_gauge');
+    var hasZenkai = document.getElementById('has_zenkai');
+    var hasAwaken = document.getElementById('has_awaken');
+
+    var strikeArt = document.getElementById('strike_art');
+    var blastArt = document.getElementById('blast_art');
+    var specialArt = document.getElementById('special_art');
+    var special_moveArt = document.getElementById('special_move_art');
+    var ultimateArt = document.getElementById('ultimate_art');
+    var awakenArt = document.getElementById('awaken_art');
+
+    var name_specialArt = document.getElementById('name_special_art');
+    var name_special_moveArt = document.getElementById('name_special_move_art');
+    var name_ultimateArt = document.getElementById('name_ultimate_art');
+    var name_awakenArt = document.getElementById('name_awaken_art');
+
+    var zLimited1 = document.getElementById('z_limited_1');
+    var zLimited2 = document.getElementById('z_limited_2');
+    var zLimited3 = document.getElementById('z_limited_3');
+    var zLimited4 = document.getElementById('z_limited_4');
+
+    var zAbility1 = document.getElementById('z_ability_1');
+    var zAbility2 = document.getElementById('z_ability_2');
+    var zAbility3 = document.getElementById('z_ability_3');
+    var zAbility4 = document.getElementById('z_ability_4');
+
+    var mainAbility = document.getElementById('main_ability');
+    var passive1 = document.getElementById('passive_1');
+    var passive2 = document.getElementById('passive_2');
+    var passive3 = document.getElementById('passive_3');
+    var passive4 = document.getElementById('passive_4');
+
+    var name_passive1 = document.getElementById('name_passive_1');
+    var name_passive2 = document.getElementById('name_passive_2');
+    var name_passive3 = document.getElementById('name_passive_3');
+    var name_passive4 = document.getElementById('name_passive_4');
+    var ultra_ability = document.getElementById('ultra_ability');
+
+    fetch('/colors')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(color => {
+                const option = document.createElement('option');
+                option.value = color.color_id;
+                option.text = color.color_name;
+                selectColor.appendChild(option);
+            });
+        })
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+        });
+
+    fetch('/chapters')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(chapter => {
+                const option = document.createElement('option');
+                option.value = chapter.chapter_id;
+                option.text = chapter.chapter_name;
+                selectChapter.appendChild(option);
+            });
+        })
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+        });
+
+    fetch('/rarity')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(rarity => {
+                const option = document.createElement('option');
+                option.value = rarity.rarity_id;
+                option.text = rarity.rarity_name;
+                selectRarity.appendChild(option);
+            });
+        })
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+        });
+
+    fetch('/types')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(type => {
+                const option = document.createElement('option');
+                option.value = type.type_id;
+                option.text = type.type_name;
+                selectType.appendChild(option);
+            });
+        })
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+        });
+
+    const optionsContainer = document.getElementById('options-container');
+    const selectedOptionsSpan = document.getElementById('selected-options');
+    let selectedNames = []
+    var selectedIds = []
+    var selectedIdsString
+
+    fetch('/tags')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(tag => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('option');
+                optionElement.innerHTML = `
+            <input type="checkbox" id="option-${tag.tag_id}" data-id="${tag.tag_id}" data-name="${tag.tag_name}">
+            <label for="option-${tag.tag_id}">${tag.tag_name}</label>
+        `;
+                optionElement.addEventListener('change', handleOptionChange);
+                optionsContainer.appendChild(optionElement);
+            });
+        })
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+        });
+
+    function handleOptionChange(event) {
+        const optionId = parseInt(event.target.dataset.id, 10);
+        const optionName = event.target.dataset.name;
+
+        if (event.target.checked) {
+            // Marcar la opción y almacenar el ID y el nombre por separado
+            selectedIds.push(optionId);
+            selectedNames.push(optionName);
+        } else {
+            // Desmarcar la opción y eliminarla de las listas
+            const index = selectedIds.indexOf(optionId);
+            if (index !== -1) {
+                selectedIds.splice(index, 1);
+                selectedNames.splice(index, 1);
+            }
+        }
+
+        // Actualizar el texto de opciones seleccionadas
+        selectedOptionsSpan.textContent = selectedNames.join(', ');
+
+        // Actualizar la cadena de IDs separados por comas
+        selectedIdsString = selectedIds.join(',');
+    }
+
+    function lock(art, nameArt) {
+        art.disabled = true
+        nameArt.disabled = true
+    }
+
+    function unlock(art, nameArt) {
+        art.disabled = false
+        nameArt.disabled = false
+    }
+
+    isTagSwitch.addEventListener('change', () => {
+        if (isTagSwitch.checked) {
+            lock(ultimateArt, name_ultimateArt)
+            lock(awakenArt, name_awakenArt)
+        } else {
+            unlock(ultimateArt, name_ultimateArt)
+            unlock(awakenArt, name_awakenArt)
+        }
+    })
+
+    isRevival.addEventListener('change', () => {
+        if (isRevival.checked) {
+            lock(ultimateArt, name_ultimateArt)
+            lock(awakenArt, name_awakenArt)
+        } else {
+            unlock(ultimateArt, name_ultimateArt)
+            unlock(awakenArt, name_awakenArt)
+        }
+    })
+
+    isTransforming.addEventListener('change', () => {
+        if (isTransforming.checked) {
+            lock(ultimateArt, name_ultimateArt)
+            lock(awakenArt, name_awakenArt)
+        } else {
+            unlock(ultimateArt, name_ultimateArt)
+            unlock(awakenArt, name_awakenArt)
+        }
+    })
+
+    hasAwaken.addEventListener('change', () => {
+        if (hasAwaken.checked) {
+            lock(ultimateArt, name_ultimateArt)
+            unlock(awakenArt, name_awakenArt)
+        } else {
+            unlock(ultimateArt, name_ultimateArt)
+        }
+    })
+
+    isLF.addEventListener('change', () => {
+        if (isLF.checked) {
+            zLimited1.disabled = false
+            zLimited2.disabled = false
+            zLimited3.disabled = false
+            zLimited4.disabled = false
+        } else {
+            zLimited1.disabled = true
+            zLimited2.disabled = true
+            zLimited3.disabled = true
+            zLimited4.disabled = true
+        }
+    })
+
+    unitRarity.addEventListener('change', () => {
+        if (unitRarity.value === "4") {
+            ultra_ability.disabled = false;
+        } else {
+            ultra_ability.disabled = true;
+        }
+    })
+
+
+    const formulario = document.getElementById('postUnit');
+
+    formulario.addEventListener('submit', function (event) {
+        fetch('/unit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                id: unitID,
+                unit_name: unitName,
+                unit_color: unitColor,
+                unit_type: unitType,
+                unitTag: unitTag,
+                unitChapter: unitChapter,
+                unitRarity: unitRarity,
+                isRevival: isRevival,
+                isTransforming: isTransforming,
+                isTagSwitch: isTagSwitch,
+                isLF: isLF,
+                hasGauge: hasGauge,
+                hasZenkai: hasZenkai,
+                hasAwaken: hasAwaken,
+                strikeArt: strikeArt,
+                blastArt: blastArt,
+                specialArt: specialArt,
+                special_moveArt: special_moveArt,
+                ultimateArt: ultimateArt,
+                awakenArt: awakenArt,
+                name_specialArt: name_specialArt,
+                name_special_moveArt: name_special_moveArt,
+                name_ultimateArt: name_ultimateArt,
+                name_awakenArt: name_awakenArt,
+                zLimited1: zLimited1,
+                zLimited2: zLimited2,
+                zLimited3: zLimited3,
+                zLimited4: zLimited4,
+                zAbility1: zAbility1,
+                zAbility2: zAbility2,
+                zAbility3: zAbility3,
+                zAbility4: zAbility4,
+                mainAbility: mainAbility,
+                passive1: passive1,
+                passive2: passive2,
+                passive3: passive3,
+                passive4: passive4,
+                name_passive1: name_passive1,
+                name_passive2: name_passive2,
+                name_passive3: name_passive3,
+                name_passive4: name_passive4,
+                ultra_ability: ultra_ability
+            }),
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Error en la solicitud: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.ok) {
+                    console.log('Unidad creada con éxito:', data);
+                } else {
+                    console.error('Error al crear la unidad:', data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error en la solicitud:', error);
+                console.error('Tipo de error:', error.constructor.name);
+            });
+    });
+</script>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Tags</title>
+</head>
+<body>
+    <h1>Formulario de Tags</h1>
+    <form id="tagForm">
+        <label for="tagNombre">Nombre del Tag:</label>
+        <input type="text" id="tagNombre" name="tagNombre" required>
+        <button type="submit">Agregar Tag</button>
+    </form>
+
+    <script>
+        document.getElementById('tagForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const tagNombre = document.getElementById('tagNombre').value;
+
+            // Realiza una solicitud POST al servidor con los datos del formulario
+            fetch('/tags', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ tagNombre }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                // Puedes redirigir o manejar la respuesta según tus necesidades
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
