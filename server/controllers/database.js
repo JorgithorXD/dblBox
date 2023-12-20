@@ -1,6 +1,8 @@
 import mysql from 'mysql2/promise'
+import dotenv from 'dotenv'
+dotenv.config()
 
-const config = {
+const config =  {
     host: 'localhost',
     user: 'root',
     port: 3306,

@@ -91,7 +91,7 @@
 
 <body>
     <h1>Formulario de Unidad</h1>
-    <form id="postUnit">
+    <form id="postUnit" enctype="multipart/form-data">
         <fieldset>
             <legend>
                 <H2>Basic Info</H2>
@@ -243,7 +243,7 @@
                 <textarea id="passive_2" name="passive_2"></textarea>
             </div>
         </fieldset>
-        <fieldset>
+        <fieldset id="zenkai-fieldset" disabled>
             <legend>
                 <h1>Zenkai Data</h1>
             </legend>
@@ -337,11 +337,21 @@
     var mainAbility = document.getElementById('main_ability');
     var passive1 = document.getElementById('passive_1');
     var passive2 = document.getElementById('passive_2');
+    var zpassive1 = document.getElementById('zpassive_1');
+    var zpassive2 = document.getElementById('zpassive_2');
     var passive3 = document.getElementById('passive_3');
     var passive4 = document.getElementById('passive_4');
 
+    
+    var zenkaiAbility1 = document.getElementById('zenkai_ability_1');
+    var zenkaiAbility2 = document.getElementById('zenkai_ability_2');
+    var zenkaiAbility3 = document.getElementById('zenkai_ability_3');
+    var zenkaiAbility4 = document.getElementById('zenkai_ability_4');
+
     var name_passive1 = document.getElementById('name_passive_1');
     var name_passive2 = document.getElementById('name_passive_2');
+    var zname_passive1 = document.getElementById('name_zpassive_1');
+    var zname_passive2 = document.getElementById('name_zpassive_2');
     var name_passive3 = document.getElementById('name_passive_3');
     var name_passive4 = document.getElementById('name_passive_4');
     var ultra_ability = document.getElementById('ultra_ability');
@@ -496,6 +506,14 @@
             unlock(awakenArt, name_awakenArt)
         } else {
             unlock(ultimateArt, name_ultimateArt)
+        }
+    })
+
+    hasZenkai.addEventListener('change', () => {
+        if (hasZenkai.checked) {
+            unlock(document.getElementById('zenkai-fieldset'), "")
+        } else {
+            lock(document.getElementById('zenkai-fieldset'), "")
         }
     })
 

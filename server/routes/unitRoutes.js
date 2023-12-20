@@ -2,11 +2,29 @@ import express from "express"
 import { getData } from '../services/getData.js'
 import { getMap } from '../services/mapData.js'
 import { postUnit } from "../controllers/database.js"
+import multer from 'multer'
 
 const router = express.Router()
 
-router.post('/unit', async (req, res) => {
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/'); // Puedes cambiar 'uploads/' a tu carpeta deseada
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + '-' + file.originalname);
+    },
+});
+
+// Configura el middleware Multer
+const upload = multer({ storage: storage });
+
+// Ruta para subir imágenes y agregar una unidad
+router.post('/unit', upload.array('images', 5), async (req, res) => {
     try {
+        // Aquí puedes acceder a las imágenes subidas en req.files
+        console.log(req.files);
+
+        // Accede a los datos de la unidad desde req.body
         const {
             id,
             unit_name,
@@ -47,13 +65,12 @@ router.post('/unit', async (req, res) => {
             name_passive4,
             ultra_ability
         } = req.body;
-        const result = await postUnit(req.body)
-        res.json({ result });
+
+        res.json({ message: 'Unidad y imágenes agregadas con éxito' });
     } catch (error) {
         console.error('Error al agregar la unidad:', error);
         res.status(500).json({ error: `Error al agregar la unidad a la base de datos: ${error.message}` });
     }
-    return
 });
 
 // Ruta para obtener los datos de una unidad por su ID
